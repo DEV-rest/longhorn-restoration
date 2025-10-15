@@ -7,6 +7,7 @@ export const routes = [
     path: '/',
     element: <Home />,
   },
+  
   // Add more routes as needed
   // Example:
   // {
