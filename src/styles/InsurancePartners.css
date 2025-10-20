@@ -1,0 +1,139 @@
+/* Main section container */
+.insurance-container {
+  width: 100%;
+  padding: 80px 0;
+  background-color: #ffffff;
+  overflow: hidden; /* This is crucial to hide the logos moving off-screen */
+}
+
+/* Title styling and animation */
+.title-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.insurance-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1a202c;
+  display: inline-block; /* Necessary for the highlight wrapper */
+}
+
+.highlight-wrapper {
+  position: relative;
+}
+
+/* This is the green marker animation */
+.highlight-green {
+  position: absolute;
+  content: '';
+  height: 40%;
+  width: 100%;
+  background: #a7f3d0; /* A light green color */
+  bottom: 10px;
+  left: 0;
+  z-index: -1; /* Puts the highlight behind the text */
+  transform: scaleX(0);
+  transform-origin: right; /* Animation starts from the right */
+  animation: highlight-reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes highlight-reveal {
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+
+/* Logo marquee container styles */
+.logo-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between the rows */
+}
+
+.marquee-row {
+  width: 100%;
+  overflow: hidden; /* Hide the parts of the content that are outside the viewport */
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevents the content from shrinking */
+}
+
+.logo-item {
+  flex: 0 0 auto;
+  width: 200px; /* Gives each logo a consistent space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px; /* Horizontal space between logos */
+}
+
+.logo-item img {
+  max-width: 380px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  filter: grayscale(100%); /* Makes all logos black and white */
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-item img:hover {
+  filter: grayscale(0%); /* Brings color back on hover */
+  opacity: 1;
+}
+
+
+/* Scrolling animations */
+@keyframes scroll-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scroll-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Applying animations to rows */
+.ltr {
+  animation: scroll-ltr 14s linear infinite;
+}
+
+.rtl {
+  animation: scroll-rtl 14s linear infinite;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .insurance-title {
+    font-size: 2.5rem;
+  }
+
+  .highlight-green {
+    bottom: 5px;
+  }
+
+  .logo-item {
+    width: 150px;
+    margin: 0 20px;
+  }
+
+  .logo-item img {
+    max-width: 120px;
+  }
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import InsurancePartners from './components/InsurancePartners'
 import renderRoutes from './routes'
 import './App.css'
 
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             {renderRoutes()}
           </Routes>
+      <InsurancePartners />
         </main>
       </div>
     </Router>

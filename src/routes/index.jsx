@@ -8,6 +8,7 @@ export const routes = [
     element: <Home />,
   },
   
+
   // Add more routes as needed
   // Example:
   // {
