@@ -1,0 +1,155 @@
+/* hero.css */
+.hero { position:relative; min-height:90vh; display:block; }
+
+/* brighter video */
+.hero-media{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  filter: brightness(1.35) contrast(1.06) saturate(1.12);
+}
+
+/* lighter overlay for readability */
+.hero-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.10) 45%, rgba(0,0,0,.06) 100%);
+}
+
+/* soft “screen” highlight to lift mids */
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(60% 60% at 45% 55%, rgba(255,255,255,.28), rgba(255,255,255,.10) 60%, transparent 70%);
+  mix-blend-mode: screen;
+}
+
+.hero-inner{
+  position:relative; z-index:1;
+  max-width:1200px; margin:0 auto; padding:48px 20px;
+  display:grid; grid-template-columns:1.1fr .9fr; gap:28px;
+}
+
+/* heading block spacing (responsive) */
+.hero-copy{
+  color:#fff; align-self:center; text-shadow:0 2px 8px rgba(0,0,0,.40);
+  max-width:1000px; margin:18vh 6vw 0 0;
+  
+}
+.hero-copy h1{ font-size:48px; line-height:1.05; letter-spacing:.5px; margin:0 0 12px; }
+.hero-copy p{ font-size:18px; max-width:620px; opacity:.98; }
+
+@media (max-width: 960px){
+  .hero-inner{ grid-template-columns:1fr; }
+  .hero-copy{ margin:12vh 0 0 0; }
+}
+@media (max-width: 600px){
+  .hero-copy h1{ font-size:36px; }
+  .hero-copy{ margin:10vh 0 0 0; }
+}
+
+/* optional: even brighter toggle */
+.hero.hero--bright .hero-media{ filter: brightness(1.45) contrast(1.06) saturate(1.14); }
+.hero.hero--bright .hero-overlay{
+  background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08) 45%, rgba(0,0,0,.04) 100%);
+}
+
+/* ===== Brand palette ===== */
+:root{
+  --brand-white:#fefefd;
+  --brand-blue:#0a3854;
+  --brand-red:#ef1b30;
+
+  --cta-bg: rgba(10,56,84,.18);     /* blue glass */
+  --cta-bg-hover: rgba(10,56,84,.26);
+  --cta-ring: rgba(254,254,253,.35); /* soft white ring */
+}
+
+/* Container */
+.cta-pill-call{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.95rem 1.2rem;
+  border-radius:999px;
+  color:var(--brand-white);
+  background:var(--cta-bg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-decoration:none;
+  box-shadow: inset 0 0 0 1px rgba(254,254,253,.18), 0 4px 18px rgba(0,0,0,.22);
+  overflow:hidden;
+  min-width:260px; /* extra runway for the long slide */
+  transition: background-color .22s ease, box-shadow .22s ease;
+}
+
+.cta-pill-call:hover,
+.cta-pill-call:focus-visible{
+  background:var(--cta-bg-hover);
+  box-shadow: inset 0 0 0 1px var(--cta-ring), 0 8px 26px rgba(0,0,0,.28);
+  outline:none;
+}
+
+/* Icon: red, rides into the ghost panel */
+.call-icon{
+  display:grid; place-items:center;
+  width:1.9rem; height:1.9rem;
+  border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, var(--brand-red), #ff5a63);
+  box-shadow:0 2px 10px rgba(239,27,48,.45);
+  transition: transform .38s cubic-bezier(.22,.8,.26,1), opacity .18s ease .12s;
+  z-index:2;
+}
+.phone-svg{ width:1.05rem; height:1.05rem; fill:#fff; }
+
+/* Label visible by default */
+.call-label{
+  font-weight:700;
+  white-space:nowrap;
+  transition: opacity .18s ease;
+  z-index:1;
+}
+
+/* Ghost panel: light interior so red number pops */
+.cta-inner{
+  position:absolute;
+  inset:2px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background: rgba(254,254,253,.92);           /* near-white */
+  box-shadow: inset 0 0 0 1px rgba(10,56,84,.22);
+  transform: translateX(-108%);                /* start off-left */
+  transition: transform .38s cubic-bezier(.22,.8,.26,1), opacity .18s ease;
+  opacity:0;
+  z-index:3;                                   /* above label; feels like icon enters it */
+}
+
+.cta-inner-text{
+  font-weight:800;
+  letter-spacing:.3px;
+  color: var(--brand-red);                     /* urgent red */
+}
+
+/* Hover/focus sequence */
+.cta-pill-call:hover .cta-inner,
+.cta-pill-call:focus-visible .cta-inner{
+  transform: translateX(0);
+  opacity:1;
+}
+
+/* Icon travels farther so it appears "inside" the ghost,
+   then fades out after entering */
+.cta-pill-call:hover .call-icon,
+.cta-pill-call:focus-visible .call-icon{
+  transform: translateX(185%) scale(.9);       /* longer slide */
+  opacity:0;                                   /* disappears inside */
+}
+
+/* Hide the label during reveal */
+.cta-pill-call:hover .call-label,
+.cta-pill-call:focus-visible .call-label{
+  opacity:0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .cta-pill-call,*{ transition:none !important; }
+}

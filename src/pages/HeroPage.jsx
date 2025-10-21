@@ -1,13 +1,11 @@
 import Hero from '../components/Hero';
 import ServicesSection from '../components/ServicesSection';
 
-const Home = () => {
+export default function HeroPage() {
   return (
     <>
       <Hero />
       <ServicesSection />
     </>
   );
-};
-
-export default Home;
+}
