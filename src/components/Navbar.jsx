@@ -32,34 +32,37 @@ const menuData = {
     services: {
         title: "Our Restoration Services",
         items: [
-            { name: "Water Damage", description: "Emergency water extraction.", icon: <WaterIcon /> },
-            { name: "Fire Damage", description: "Soot, smoke, and odor removal.", icon: <FireIcon /> },
-            { name: "Mold Remediation", description: "Safe, effective mold removal.", icon: <MoldIcon /> },
-            { name: "Storm & Disaster", description: "Cleanup after natural disasters.", icon: <StormIcon /> },
-            { name: "Property Cleanup", description: "Biohazard & trauma scene cleaning.", icon: <CleanupIcon /> },
-            { name: "Property Restoration", description: "Full reconstruction contracting.", icon: <RestorationIcon /> },
+          
+            { name: "Water Damage", description: "Emergency water extraction.", icon: <WaterIcon />, path: "/services/water-damage" },
+            { name: "Fire Damage", description: "Soot, smoke, and odor removal.", icon: <FireIcon />, path: "/services/fire-damage" },
+            { name: "Mold Remediation", description: "Safe, effective mold removal.", icon: <MoldIcon />, path: "/services/mold-remediation" },
+            { name: "Storm & Disaster", description: "Cleanup after natural disasters.", icon: <StormIcon />, path: "/services/storm-disaster" },
+            { name: "Property Cleanup", description: "Biohazard & trauma scene cleaning.", icon: <CleanupIcon />, path: "/services/property-cleanup" },
+            { name: "Property Restoration", description: "Full reconstruction contracting.", icon: <RestorationIcon />, path: "/services/property-restoration" },
         ]
     },
     about: {
       title: "About Longhorn",
       items: [
-          { name: "Our Mission & Values", description: "Dedicated to restoring your peace of mind.",  icon: <MissionIcon />  },
-          { name: "Our Expert Team", description: "Meet our certified and experienced professionals.", icon: <TeamIcon /> },
-          { name: "Client Testimonials", description: "See what our satisfied customers are saying.", icon: <TestimonialIcon />  },
-          { name: "Licenses & Certifications", description: "We are fully licensed, bonded, and insured.", icon: <LicenseIcon />  },
+         
+          { name: "Our Mission & Values", description: "Dedicated to restoring your peace of mind.",  icon: <MissionIcon />, path: "/about/mission"  },
+          { name: "Our Expert Team", description: "Meet our certified and experienced professionals.", icon: <TeamIcon />, path: "/about/team" },
+          { name: "Client Testimonials", description: "See what our satisfied customers are saying.", icon: <TestimonialIcon />, path: "/about/testimonials"  },
+          { name: "Licenses & Certifications", description: "We are fully licensed, bonded, and insured.", icon: <LicenseIcon />, path: "/about/licenses"  },
       ]
   },
   resources: {
       title: "Helpful Resources",
       items: [
-          { name: "The Insurance Claim Process", description: "We help you navigate the complexities.", icon: <InsuranceIcon />  },
-          { name: "Emergency Preparedness Guide", description: "Tips to prepare your home for the unexpected.", icon: <GuideIcon />  },
-          { name: "Frequently Asked Questions", description: "Get answers to your common questions.", icon: <FaqIcon />  },
-          { name: "Our Restoration Blog", description: "Industry news and helpful articles for homeowners.", icon: <BlogIcon />  },
+        
+          { name: "The Insurance Claim Process", description: "We help you navigate the complexities.", icon: <InsuranceIcon />, path: "/resources/insurance-claim"  },
+          { name: "Emergency Preparedness Guide", description: "Tips to prepare your home for the unexpected.", icon: <GuideIcon />, path: "/resources/preparedness-guide"  },
+          { name: "Frequently Asked Questions", description: "Get answers to your common questions.", icon: <FaqIcon />, path: "/resources/faq"  },
+          { name: "Our Restoration Blog", description: "Industry news and helpful articles for homeowners.", icon: <BlogIcon />, path: "/blog"  },
       ]
   }
 };
-
+// ... rest of the file
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState('services');
@@ -88,7 +91,7 @@ const Navbar = () => {
                     <Link to="/" className="navbar-logo">Longhorn<span className="logo-accent">Restoration</span></Link>
                     <div className="navbar-contact">
                         <span className="contact-text">24/7 Emergency Services</span>
-                        <a href="tel:111-111-1111" className="contact-phone">(111) 111-1111</a>
+                        <a href="tel:111-111-1111" className="contact-phone">(817) 235-0569</a>
                     </div>
                     <button className="hamburger-menu" onClick={() => handleMenuToggle(true)} aria-label="Open menu"><MenuIcon /><span className="hamburger-text">Menu</span></button>
                 </div>
@@ -107,7 +110,7 @@ const Navbar = () => {
                                     <Link to="/service-area" onClick={() => handleMenuToggle(false)}>Service Area</Link>
                                 </nav>
                                 <div className="sidebar-cta"><a href="tel:303-975-4000" className="btn btn-call">Call Now</a><Link to="/contact" className="btn btn-email" onClick={() => handleMenuToggle(false)}>Send An Email</Link></div>
-                                <div className="sidebar-contact"><span>Call us 24/7/365</span><a href="tel:303-975-4000">(303) 975-4000</a><address>2301 S Jason St<br />Denver, CO 80223</address></div>
+                                <div className="sidebar-contact"><span>Call us 24/7/365</span><a href="tel:303-975-4000">(817) 235-0569</a><address>...<br />Forthworth, TX </address></div>
                             </div>
                             <div className="sidebar-mobile-view">
                                 <div className="mobile-view mobile-view--main">
@@ -119,19 +122,20 @@ const Navbar = () => {
                                         <button onClick={() => setMobileView('resources')}>Resources</button>
                                         <Link to="/service-area" onClick={() => handleMenuToggle(false)}>Service Area</Link>
                                     </nav>
-                                    <div className="sidebar-cta"><a href="tel:303-975-4000" className="btn btn-call">Call Now</a><Link to="/contact" className="btn btn-email" onClick={() => handleMenuToggle(false)}>Send An Email</Link></div>
+                                    <div className="sidebar-cta"><a href="tel:817-235-0569" className="btn btn-call">Call Now</a><Link to="/contact" className="btn btn-email" onClick={() => handleMenuToggle(false)}>Send An Email</Link></div>
                                 </div>
                                 <div className="mobile-view mobile-view--sub">
                                     <button className="mobile-back-btn" onClick={() => setMobileView('main')}><BackIcon /> Back to Menu</button>
                                     <h3 className="mobile-submenu-title">{menuData[mobileView]?.title}</h3>
                                     <div className="mobile-submenu-links">
-                                        {(menuData[mobileView]?.items || []).map(item => (
-                                            <Link to="/" key={item.name} className="mobile-submenu-item" onClick={() => handleMenuToggle(false)}>
-                                                {item.icon}
-                                                <div className="mobile-submenu-item-text"><h4>{item.name}</h4><p>{item.description}</p></div>
-                                            </Link>
-                                        ))}
-                                    </div>
+    {(menuData[mobileView]?.items || []).map(item => (
+        // ******* UPDATED LINE BELOW *******
+        <Link to={item.path} key={item.name} className="mobile-submenu-item" onClick={() => handleMenuToggle(false)}>
+            {item.icon}
+            <div className="mobile-submenu-item-text"><h4>{item.name}</h4><p>{item.description}</p></div>
+        </Link>
+    ))}
+</div>
                                 </div>
                             </div>
                         </aside>
@@ -140,13 +144,14 @@ const Navbar = () => {
                             <div className="menu-main-content fade-in" key={activeMenu}>
                                 <h3 className="menu-title">{menuData[activeMenu]?.title}</h3>
                                 <div className="menu-grid">
-                                    {(menuData[activeMenu]?.items || []).map(item => (
-                                        <Link to="/" key={item.name} className="menu-item" onClick={() => handleMenuToggle(false)}>
-                                            <div className="menu-item-icon">{item.icon}</div>
-                                            <div className="menu-item-text"><h4>{item.name}</h4><p>{item.description}</p></div>
-                                        </Link>
-                                    ))}
-                                </div>
+    {(menuData[activeMenu]?.items || []).map(item => (
+        // ******* UPDATED LINE BELOW *******
+        <Link to={item.path} key={item.name} className="menu-item" onClick={() => handleMenuToggle(false)}>
+            <div className="menu-item-icon">{item.icon}</div>
+            <div className="menu-item-text"><h4>{item.name}</h4><p>{item.description}</p></div>
+        </Link>
+    ))}
+</div>
                             </div>
                         </main>
                     </div>

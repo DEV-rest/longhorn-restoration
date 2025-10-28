@@ -309,38 +309,68 @@ body {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
 
-/* --- MOBILE RESPONSIVE STYLES --- */
+/* --- MOBILE RESPONSIVE STYLES (New/Modified) --- */
 .sidebar-mobile-view {
-  display: none;
+  display: none; /* Hidden by default on desktop */
 }
+
+/* Desktop Styles for Navbar Contact */
 @media (min-width: 769px) {
   .navbar-contact {
     display: flex;
   }
 }
+
+/* Mobile-Specific Styles */
 @media (max-width: 768px) {
+  /* --- NAVBAR CHANGES --- */
   .navbar-logo {
     font-size: 1.5rem;
   }
+  .hamburger-menu {
+    padding: 0;
+  }
+  .hamburger-text {
+    display: none; /* Hide the 'Menu' text on smaller phones */
+  }
+  
+  /* --- OVERLAY MENU CHANGES --- */
+  .menu-overlay {
+    width: 90vw;
+    max-width: 400px;
+  }
+  .close-btn {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  .menu-content {
+    /* Ensure the mobile view takes up the full width of the overlay */
+    width: 100%;
+  }
+  
+  /* --- SIDEBAR CHANGES --- */
+  .menu-sidebar {
+    max-width: 100%; /* Sidebar takes up full width of the overlay */
+  }
+  
+  /* Hide desktop-only elements */
   .sidebar-desktop-view {
     display: none;
   }
+  .menu-main {
+    display: none; /* Hide the main blue content panel */
+  }
+  
+  /* Show mobile-only elements */
   .sidebar-mobile-view {
     display: block;
     height: 100%;
+    width: 100%; /* Crucial for the sliding to work */
   }
-  .menu-main {
-    display: none;
-  }
-  .menu-overlay {
-    width: 85vw;
-    max-width: 400px;
-  } /* Mobile menu is smaller */
-  .menu-sidebar {
-    max-width: 100%;
-  }
+  
+  /* --- SLIDING MOBILE VIEWS --- */
   .mobile-view {
-    padding: 2.5rem;
+    padding: 2rem 1.5rem; /* Adjusted padding for better mobile feel */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -348,17 +378,23 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.35s ease-in-out; /* Smooth sliding transition */
   }
+  
+  /* Initial state for the sub-menu (pushed off-screen) */
   .mobile-view--sub {
     transform: translateX(100%);
   }
+  
+  /* Base state: Main menu is visible, sub-menu is off-screen */
   .menu-sidebar.mobile-view--main .mobile-view--main {
     transform: translateX(0);
   }
   .menu-sidebar.mobile-view--main .mobile-view--sub {
     transform: translateX(100%);
   }
+  
+  /* Active state: Main menu slides out, sub-menu slides in */
   .menu-sidebar.mobile-view--services .mobile-view--main,
   .menu-sidebar.mobile-view--about .mobile-view--main,
   .menu-sidebar.mobile-view--resources .mobile-view--main {
@@ -369,6 +405,8 @@ body {
   .menu-sidebar.mobile-view--resources .mobile-view--sub {
     transform: translateX(0);
   }
+  
+  /* --- MOBILE SUB-MENU STYLING --- */
   .mobile-back-btn {
     background: none;
     border: none;
@@ -403,7 +441,7 @@ body {
     border-radius: 8px;
     transition: background-color 0.2s ease;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Aligns content better with icon */
     gap: 1rem;
   }
   .mobile-submenu-item:hover {
@@ -413,6 +451,7 @@ body {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
+    margin-top: 2px; /* Slight adjustment for visual alignment */
   }
   .mobile-submenu-item-text h4 {
     margin: 0 0 0.25rem 0;
@@ -420,7 +459,11 @@ body {
   }
   .mobile-submenu-item-text p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Slightly smaller for better fit */
     opacity: 0.8;
+  }
+  .sidebar-nav button,
+  .sidebar-nav a {
+      font-size: 1.25rem; /* Smaller font for main menu links */
   }
 }
