@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AccessibilityWidget from './AccessibilityWidget';
 import "../styles/Navbar.css";
 
 // --- Icon Components ---
@@ -92,6 +93,7 @@ const Navbar = () => {
 
     return (
         <>
+            <AccessibilityWidget />
             <header className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo">Longhorn<span className="logo-accent">Restoration</span></Link>
