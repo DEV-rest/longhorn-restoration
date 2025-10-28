@@ -70,8 +70,14 @@ const Navbar = () => {
 
     const handleMenuToggle = (isOpen) => {
         setIsMenuOpen(isOpen);
-        if (isOpen) { setMobileView('main'); }
-        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        if (isOpen) {
+            setMobileView('main');
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflowX = 'hidden'; // Prevent horizontal scroll on html
+        } else {
+            document.body.style.overflow = 'auto';
+            document.documentElement.style.overflowX = 'auto'; // Restore horizontal scroll on html
+        }
     };
 
     const handleSidebarClick = (menu) => {
@@ -113,6 +119,7 @@ const Navbar = () => {
                                 <div className="sidebar-contact"><span>Call us 24/7/365</span><a href="tel:303-975-4000">(817) 235-0569</a><address>...<br />Forthworth, TX </address></div>
                             </div>
                             <div className="sidebar-mobile-view">
+                                <button className="close-btn mobile-close-btn" onClick={() => handleMenuToggle(false)} aria-label="Close menu"><CloseIcon /></button>
                                 <div className="mobile-view mobile-view--main">
                                     <Link to="/" className="sidebar-logo" onClick={() => handleMenuToggle(false)}>Longhorn<span className="logo-accent-light">Restoration</span></Link>
                                     <h2 className="sidebar-title">Menu</h2>

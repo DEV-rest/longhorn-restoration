@@ -363,6 +363,7 @@ body {
   
   /* Show mobile-only elements */
   .sidebar-mobile-view {
+    position: relative; /* Added for absolute positioning of mobile-close-btn */
     display: block;
     height: 100%;
     width: 100%; /* Crucial for the sliding to work */
@@ -466,4 +467,21 @@ body {
   .sidebar-nav a {
       font-size: 1.25rem; /* Smaller font for main menu links */
   }
+}
+
+/* Mobile-specific close button positioning */
+@media (max-width: 768px) {
+  .mobile-close-btn {
+    top: 2.4rem;
+    right: 0.8rem;
+    z-index: 10; /* Ensure it's above other content */
+  }
+}
+
+/*
+  Global fix for horizontal overflow on mobile devices.
+  This prevents any element on the page from creating unwanted horizontal space.
+*/
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden; }
 }
