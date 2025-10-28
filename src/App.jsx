@@ -4,6 +4,7 @@ import InsurancePartners from './components/InsurancePartners'
 import renderRoutes from './routes'
 import './App.css'
 import Hero from './components/Hero';
+import HowItWorks from './components/HowItWorks'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             {renderRoutes()}
           </Routes>
       <InsurancePartners />
+    <HowItWorks />
         </main>
       </div>
     </Router>
