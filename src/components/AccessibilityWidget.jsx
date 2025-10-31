@@ -8,12 +8,19 @@ const FontSizeIncreaseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width
 const FontSizeDecreaseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/><path d="M18 11.5h6"/></svg>;
 const ContrastIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 18a6 6 0 0 0 0-12v12z"></path></svg>;
 const GrayscaleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#888" stroke="#555" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>;
+const InvertColorsIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor"></circle></svg>;
+const UnderlineIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><path d="M4 21h16"/></svg>;
+const ReadableFontIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16"/><path d="M8 4h8"/><path d="M8 20h8"/><path d="M15 4v16"/></svg>;
+const TextSpacingIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/><path d="m21 15-3-3 3-3"/><path d="m3 15 3-3-3-3"/></svg>;
 const ResetIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2M20 19v-4h-4"/></svg>;
 
 const AccessibilityWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [fontSize, setFontSize] = useState(1); // Multiplier for root font size
-  const [contrast, setContrast] = useState('normal'); // 'normal', 'high', 'grayscale'
+  const [contrast, setContrast] = useState('normal'); // 'normal', 'high', 'grayscale', 'invert'
+  const [underlineLinks, setUnderlineLinks] = useState(false);
+  const [readableFont, setReadableFont] = useState(false);
+  const [textSpacing, setTextSpacing] = useState(false);
 
   const applyStyles = useCallback(() => {
     const root = document.documentElement;
@@ -21,13 +28,21 @@ const AccessibilityWidget = () => {
     root.style.setProperty('--font-size-multiplier', fontSize);
 
     // Contrast and Grayscale
-    document.body.classList.remove('high-contrast', 'grayscale');
+    document.body.classList.remove('high-contrast', 'grayscale', 'invert-colors');
     if (contrast === 'high') {
       document.body.classList.add('high-contrast');
     } else if (contrast === 'grayscale') {
       document.body.classList.add('grayscale');
+    } else if (contrast === 'invert') {
+      document.body.classList.add('invert-colors');
     }
-  }, [fontSize, contrast]);
+
+    // Other toggles
+    document.body.classList.toggle('underline-links', underlineLinks);
+    document.body.classList.toggle('readable-font', readableFont);
+    document.body.classList.toggle('text-spacing', textSpacing);
+
+  }, [fontSize, contrast, underlineLinks, readableFont, textSpacing]);
 
   useEffect(() => {
     applyStyles();
@@ -36,6 +51,9 @@ const AccessibilityWidget = () => {
   const handleReset = () => {
     setFontSize(1);
     setContrast('normal');
+    setUnderlineLinks(false);
+    setReadableFont(false);
+    setTextSpacing(false);
   };
 
   const increaseFontSize = () => setFontSize(prev => Math.min(prev + 0.1, 1.4));
@@ -71,7 +89,16 @@ const AccessibilityWidget = () => {
             <p className="option-label">Contrast</p>
             <div className="option-controls">
               <button onClick={() => setContrast('high')} aria-pressed={contrast === 'high'} aria-label="High contrast"><ContrastIcon /></button>
+              <button onClick={() => setContrast('invert')} aria-pressed={contrast === 'invert'} aria-label="Invert colors"><InvertColorsIcon /></button>
               <button onClick={() => setContrast('grayscale')} aria-pressed={contrast === 'grayscale'} aria-label="Grayscale"><GrayscaleIcon /></button>
+            </div>
+          </div>
+          <div className="option-group">
+            <p className="option-label">Content</p>
+            <div className="option-controls">
+              <button onClick={() => setUnderlineLinks(!underlineLinks)} aria-pressed={underlineLinks} aria-label="Underline links"><UnderlineIcon /></button>
+              <button onClick={() => setReadableFont(!readableFont)} aria-pressed={readableFont} aria-label="Readable font"><ReadableFontIcon /></button>
+              <button onClick={() => setTextSpacing(!textSpacing)} aria-pressed={textSpacing} aria-label="Text spacing"><TextSpacingIcon /></button>
             </div>
           </div>
         </div>
