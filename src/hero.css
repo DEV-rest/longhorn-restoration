@@ -28,20 +28,64 @@
 
 /* heading block spacing (responsive) */
 .hero-copy{
-  color:#fff; align-self:center; text-shadow:0 2px 8px rgba(0,0,0,.40);
-  max-width:1000px; margin:18vh 6vw 0 0;
-  
+  color:#fff;
+  align-self:center;
+  text-shadow:0 2px 8px rgba(0,0,0,.40);
+  max-width:1000px;
+  margin:18vh 6vw 0 0;
 }
-.hero-copy h1{ font-size:48px; line-height:1.05; letter-spacing:.5px; margin:0 0 12px; }
-.hero-copy p{ font-size:18px; max-width:620px; opacity:.98; }
+.hero-copy h1{
+  font-size:69px;
+  line-height:1;
+  letter-spacing:.4px;
+  margin:0 0 5px; /* reduced bottom spacing */
+  font-weight:800;
+}
+
+/* ensure two visual lines and controlled spacing */
+.hero-copy .line1,
+.hero-copy .line2{
+  display:inline-flexbox;
+}
+.hero-copy .line1{ margin-bottom:0px; } /* tightened further */
+
+/* highlight styles: brighter colors and subtle glow so they read over the video */
+.hero-copy .highlight{
+  display:inline-block;
+  font-weight:900;
+  /* stronger glow */
+  text-shadow: 0 12px 36px rgba(0,0,0,0.75);
+}
+.hero-copy .highlight.emergency{
+  color: var(--brand-red);
+  text-shadow: 0 12px 36px rgba(239,27,48,0.28), 0 4px 12px rgba(0,0,0,0.6);
+}
+.hero-copy .highlight.priority {
+  color: #1c98e6;
+  text-shadow:
+    0 0 8px rgba(15, 83, 126, 0.8),
+    0 0 18px rgba(19, 143, 219, 0.6),
+    0 0 36px rgba(79, 171, 228, 0.4);
+}
+
+
+.hero-copy p{
+  font-size:20px; /* larger lead */
+  max-width:620px;
+  opacity:.98;
+  margin-top:12px;
+}
 
 @media (max-width: 960px){
   .hero-inner{ grid-template-columns:1fr; }
   .hero-copy{ margin:12vh 0 0 0; }
+  .hero-copy .priority{ transform: translateX(6%); }
 }
 @media (max-width: 600px){
-  .hero-copy h1{ font-size:36px; }
+  .hero-copy h1{ font-size:40px; line-height:1.05; }
   .hero-copy{ margin:10vh 0 0 0; }
+  .hero-copy .priority{ display:contents; transform:none; margin-left:0; }
+  .hero-copy p{ font-size:18px; }
 }
 
 /* optional: even brighter toggle */
@@ -76,8 +120,10 @@
   text-decoration:none;
   box-shadow: inset 0 0 0 1px rgba(254,254,253,.18), 0 4px 18px rgba(0,0,0,.22);
   overflow:hidden;
-  min-width:260px; /* extra runway for the long slide */
+  min-width:360px; /* extra runway for the long slide */
   transition: background-color .22s ease, box-shadow .22s ease;
+  margin-top: 25px;
+  font-size: 20px;
 }
 
 .cta-pill-call:hover,

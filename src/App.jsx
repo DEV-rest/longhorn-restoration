@@ -5,6 +5,9 @@ import renderRoutes from './routes'
 import './App.css'
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks'
+import Footer from './components/Footer'
+import ServiceArea from './components/ServiceArea'
+import Reviews from './components/Reviews'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
       <InsurancePartners />
     <HowItWorks />
         </main>
+        <Reviews />
+        <ServiceArea />
+        <Footer />
       </div>
     </Router>
   );

@@ -33,13 +33,12 @@ const menuData = {
     services: {
         title: "Our Restoration Services",
         items: [
-          
-            { name: "Water Damage", description: "Emergency water extraction.", icon: <WaterIcon />, path: "/services/water-damage" },
-            { name: "Fire Damage", description: "Soot, smoke, and odor removal.", icon: <FireIcon />, path: "/services/fire-damage" },
+            { name: "Water Damage", description: "Emergency water extraction.", icon: <WaterIcon />, path: "/services/water-damage-restoration" },
+            { name: "Fire Damage", description: "Soot, smoke, and odor removal.", icon: <FireIcon />, path: "/services/fire-damage-restoration" },
             { name: "Mold Remediation", description: "Safe, effective mold removal.", icon: <MoldIcon />, path: "/services/mold-remediation" },
-            { name: "Storm & Disaster", description: "Cleanup after natural disasters.", icon: <StormIcon />, path: "/services/storm-disaster" },
-            { name: "Property Cleanup", description: "Biohazard & trauma scene cleaning.", icon: <CleanupIcon />, path: "/services/property-cleanup" },
-            { name: "Property Restoration", description: "Full reconstruction contracting.", icon: <RestorationIcon />, path: "/services/property-restoration" },
+            { name: "Storm & Disaster", description: "Cleanup after natural disasters.", icon: <StormIcon />, path: "/services/emergency-response" },
+            { name: "Property Cleanup", description: "Biohazard & trauma scene cleaning.", icon: <CleanupIcon />, path: "/services/residential-restoration" },
+            { name: "Property Restoration", description: "Full reconstruction contracting.", icon: <RestorationIcon />, path: "/services/commercial-restoration" },
         ]
     },
     about: {

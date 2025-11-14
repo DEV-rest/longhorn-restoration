@@ -20,8 +20,11 @@ export default function Hero() {
 
       <div className="hero-inner">
         <div className="hero-copy">
-          <h1 id="hero-title">Your Emergency, Our Priority.</h1>
-          <p>24/7 water and fire restoration. Fast mitigation, clear updates.</p>
+          <h1 id="hero-title">
+            <span className="line1">Your <span className="highlight emergency">Emergency</span></span>
+            <br />
+            <span className="line2">Our <span className="highlight priority">Priority</span></span>
+          </h1>
 
           <a
             className="cta-pill-call"
@@ -38,7 +41,7 @@ export default function Hero() {
            
             {/* inner ghost button shown on hover/focus */}
             <span className="cta-inner" aria-hidden="true">
-              <span className="cta-inner-text">(682) 555-1234</span>
+              <span className="cta-inner-text">(817) 235-0569</span>
             </span>
           </a>
         </div>

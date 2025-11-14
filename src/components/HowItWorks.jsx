@@ -21,19 +21,19 @@ const stepsData = [
     step: 3,
     title: 'Estimate Preparation',
     description: 'We use industry-standard software to create a detailed, transparent estimate and work directly with your insurance adjuster.',
-    imageUrl: '/images/steps/step3-estimate.jpg',
+    imageUrl: '/images/steps/step3-estimate.png',
   },
   {
     step: 4,
     title: 'Property Restoration',
     description: 'Our skilled craftsmen begin the rebuilding process, restoring your property to its pre-loss condition, or even better.',
-    imageUrl: '/images/steps/step4-restoration.jpg',
+    imageUrl: '/images/steps/step4-restoration.jpeg',
   },
   {
     step: 5,
     title: 'Claim Management',
     description: 'We handle the confusing insurance paperwork and communication, ensuring your claim is processed smoothly from start to finish.',
-    imageUrl: '/images/steps/step5-claim.jpg',
+    imageUrl: '/images/steps/step5-claim.png',
   },
 ];
 
