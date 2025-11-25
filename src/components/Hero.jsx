@@ -28,8 +28,8 @@ export default function Hero() {
 
           <a
             className="cta-pill-call"
-            href="tel:+16825551234"
-            aria-label="Call Longhorn Restoration, 24 7. Phone number 6 8 2, 5 5 5, 1 2 3 4."
+            href="tel:+18172350569"
+            aria-label="Call Longhorn Restoration, 24 7. Phone number 8 1 7, 2 3 5, 0 5 6 9."
           >
             <span className="call-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" className="phone-svg" aria-hidden="true">

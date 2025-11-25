@@ -1,5 +1,5 @@
 /* hero.css */
-.hero { position:relative; min-height:90vh; display:block; }
+.hero { position:relative; min-height:90vh; display:block;  }
 
 /* brighter video */
 .hero-media{
@@ -77,11 +77,30 @@
 }
 
 @media (max-width: 960px){
+  .hero{
+    min-height:100vh;
+    min-height:100svh;
+  }
+  @supports (height: 100dvh){
+    .hero{
+      min-height:100dvh;
+    }
+  }
   .hero-inner{ grid-template-columns:1fr; }
   .hero-copy{ margin:12vh 0 0 0; }
   .hero-copy .priority{ transform: translateX(6%); }
+  .hero-media {object-fit:cover; object-position: center;};
 }
 @media (max-width: 600px){
+  .hero{
+    min-height:100vh;
+    min-height:100svh;
+  }
+  @supports (height: 100dvh){
+    .hero{
+      min-height:100dvh;
+    }
+  }
   .hero-copy h1{ font-size:40px; line-height:1.05; }
   .hero-copy{ margin:10vh 0 0 0; }
   .hero-copy .priority{ display:contents; transform:none; margin-left:0; }

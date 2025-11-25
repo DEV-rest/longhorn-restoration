@@ -68,7 +68,7 @@ export default function ServiceDetail() {
       <section className="svc-hero" aria-labelledby="svc-hero-title">
         <img
           className="svc-hero-media"
-          src={svc.hero || '/assets/services/water.png'}
+          src={svc.hero || '/img/services/default.jpg'}
           alt=""
           aria-hidden="true"
         />

@@ -98,7 +98,7 @@ const Navbar = () => {
                     <Link to="/" className="navbar-logo">Longhorn<span className="logo-accent">Restoration</span></Link>
                     <div className="navbar-contact">
                         <span className="contact-text">24/7 Emergency Services</span>
-                        <a href="tel:111-111-1111" className="contact-phone">(817) 235-0569</a>
+                        <a href="tel:817-235-0569" className="contact-phone">(817) 235-0569</a>
                     </div>
                     <button className="hamburger-menu" onClick={() => handleMenuToggle(true)} aria-label="Open menu"><MenuIcon /><span className="hamburger-text">Menu</span></button>
                 </div>
